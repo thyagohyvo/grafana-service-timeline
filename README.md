@@ -35,8 +35,50 @@ Um painel de monitoramento de serviços em tempo real, construído com o plugin 
 ├── script.js       # Lógica de renderização e eventos
 └── styles.css      # Estilos (variáveis CSS, dark/light theme)
 ```
+Query
 
----
+```
+SELECT
+    h.name AS Servidor,
+
+    -- Status (Zabbix agent)
+    (
+        SELECT hu.value
+        FROM history_uint hu
+        WHERE hu.itemid = iagent.itemid
+        ORDER BY hu.clock DESC
+        LIMIT 1
+    ) AS Status,
+
+    -- Uptime
+    (
+        SELECT hu.value
+        FROM history_uint hu
+        WHERE hu.itemid = iuptime.itemid
+        ORDER BY hu.clock DESC
+        LIMIT 1
+    ) AS Uptime
+
+FROM hosts h
+JOIN hosts_groups hg ON hg.hostid = h.hostid
+JOIN hstgrp g ON g.groupid = hg.groupid
+
+-- Agent
+LEFT JOIN items iagent
+  ON iagent.hostid = h.hostid
+ AND iagent.key_ = 'agent.ping'
+
+-- Uptime
+LEFT JOIN items iuptime
+  ON iuptime.hostid = h.hostid
+ AND iuptime.key_ = 'system.uptime'
+
+WHERE g.name = 'NOME-DO-GRUPO-DE-HOST'
+  AND h.status = 0
+
+ORDER BY h.name;
+```
+
 
 ## ⚙️ Configuração
 
