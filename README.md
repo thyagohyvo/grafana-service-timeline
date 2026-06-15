@@ -35,7 +35,9 @@ Um painel de monitoramento de serviços em tempo real, construído com o plugin 
 ├── script.js       # Lógica de renderização e eventos
 └── styles.css      # Estilos (variáveis CSS, dark/light theme)
 ```
+
 Query
+<img width="742" height="768" alt="image" src="https://github.com/user-attachments/assets/3b6ead64-49f6-4b3b-af76-e2a38dae437d" />
 
 ```
 SELECT
