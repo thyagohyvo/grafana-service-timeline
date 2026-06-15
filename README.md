@@ -60,7 +60,7 @@ O painel espera um `DataFrame` com as seguintes colunas:
 1. No Grafana, adicione um novo painel e selecione o tipo **HTML Graphics**.
 2. Cole o conteúdo de `panel.html` no campo **HTML**.
 3. Cole o conteúdo de `styles.css` no campo **CSS**.
-4. Cole o conteúdo de `script.js` no campo **JavaScript**.
+4. Cole o conteúdo de `onrender.js` no campo **JavaScript**.
 5. Configure a fonte de dados MySQL com a query que retorna as colunas acima.
 6. Salve o painel.
 
